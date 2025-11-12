@@ -9,6 +9,7 @@ export interface Exercise {
   difficulty: 'iniciante' | 'intermediario' | 'avancado';
   description: string;
   instructions: string[];
+  videoUrl: string; // URL do vídeo demonstrativo
 }
 
 export const workouts: Exercise[] = [
@@ -27,7 +28,8 @@ export const workouts: Exercise[] = [
       'Pule abrindo as pernas e levantando os braços',
       'Retorne à posição inicial',
       'Mantenha ritmo constante'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/2W4ZNSwoW_4'
   },
   {
     id: '2',
@@ -45,7 +47,8 @@ export const workouts: Exercise[] = [
       'Faça uma flexão',
       'Pule voltando à posição de agachamento',
       'Pule para cima com os braços estendidos'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/JZQA08SlJnM'
   },
   {
     id: '3',
@@ -61,7 +64,8 @@ export const workouts: Exercise[] = [
       'Levante os joelhos alternadamente',
       'Balance os braços naturalmente',
       'Mantenha ritmo constante'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/hGvyEg4q8KM'
   },
   
   // FORÇA
@@ -79,7 +83,8 @@ export const workouts: Exercise[] = [
       'Desça o corpo mantendo-o reto',
       'Empurre de volta para cima',
       'Mantenha core contraído'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/IODxDxX7oi4'
   },
   {
     id: '5',
@@ -96,7 +101,8 @@ export const workouts: Exercise[] = [
       'Agache como se fosse sentar',
       'Mantenha costas retas',
       'Suba empurrando pelos calcanhares'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/YaXPRqUwItQ'
   },
   {
     id: '6',
@@ -112,7 +118,8 @@ export const workouts: Exercise[] = [
       'Corpo reto da cabeça aos pés',
       'Contraia abdômen',
       'Mantenha posição sem deixar quadril cair'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/pSHjTRCQxIw'
   },
   {
     id: '7',
@@ -128,7 +135,8 @@ export const workouts: Exercise[] = [
       'Braços estendidos ao lado do corpo',
       'Flexione cotovelos levantando mochila',
       'Desça controladamente'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/sAq_ocpRh_I'
   },
   
   // CORE
@@ -146,7 +154,8 @@ export const workouts: Exercise[] = [
       'Mãos atrás da cabeça',
       'Levante tronco em direção aos joelhos',
       'Desça controladamente'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/1fbU_MkV7NE'
   },
   {
     id: '9',
@@ -162,7 +171,8 @@ export const workouts: Exercise[] = [
       'Traga joelho direito ao peito',
       'Alterne rapidamente com joelho esquerdo',
       'Mantenha quadril baixo'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/nmwgirgXLYM'
   },
   
   // FLEXIBILIDADE
@@ -180,7 +190,8 @@ export const workouts: Exercise[] = [
       'Use toalha nos pés para puxar',
       'Incline-se para frente suavemente',
       'Segure por 30 segundos cada lado'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/g_tea8ZNk5A'
   },
   {
     id: '11',
@@ -197,7 +208,8 @@ export const workouts: Exercise[] = [
       'Triângulo',
       'Criança (descanso)',
       'Respire profundamente em cada postura'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/v7AYKMP6rOE'
   }
 ];
 
