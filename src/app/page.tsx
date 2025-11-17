@@ -8,6 +8,7 @@ import { MealCard } from '@/components/custom/meal-card';
 import { ProgressTracker } from '@/components/custom/progress-tracker';
 import { OnboardingForm, UserData } from '@/components/custom/onboarding-form';
 import { PricingModal } from '@/components/custom/pricing-modal';
+import { CheckoutModal } from '@/components/custom/checkout-modal';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -55,6 +56,8 @@ export default function FitnessApp() {
   const [subscriptionStatus, setSubscriptionStatus] = useState<SubscriptionStatus>('none');
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [showPricing, setShowPricing] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<'monthly' | 'annual' | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
   const [personalizedPlan, setPersonalizedPlan] = useState<any>(null);
   const [trialDaysLeft, setTrialDaysLeft] = useState<number>(0);
@@ -135,18 +138,22 @@ export default function FitnessApp() {
       return;
     }
     
-    // Aqui você integraria com gateway de pagamento (Stripe, Mercado Pago, etc)
-    console.log('Plano selecionado:', plan);
-    
-    // Simula ativação da assinatura
-    localStorage.setItem('subscription_status', 'active');
-    localStorage.setItem('subscription_plan', plan);
-    localStorage.removeItem('trial_start_date');
-    setSubscriptionStatus('active');
+    // Abre modal de checkout para pagamento
+    setSelectedPlan(plan);
     setShowPricing(false);
+    setShowCheckout(true);
+  };
+
+  const handlePaymentSuccess = (paymentId: string) => {
+    // Ativa assinatura após pagamento aprovado
+    localStorage.setItem('subscription_status', 'active');
+    localStorage.setItem('subscription_plan', selectedPlan!);
+    localStorage.setItem('payment_id', paymentId);
+    localStorage.removeItem('trial_start_date');
     
-    // Aqui você redirecionaria para checkout real
-    alert(`Plano ${plan === 'monthly' ? 'Mensal' : 'Anual'} selecionado! Em produção, você seria redirecionado para o pagamento.`);
+    setSubscriptionStatus('active');
+    setShowCheckout(false);
+    setSelectedPlan(null);
   };
 
   const handleUpgrade = () => {
@@ -193,6 +200,18 @@ export default function FitnessApp() {
         <PricingModal 
           onSelectPlan={handleSelectPlan}
           onClose={() => setShowPricing(false)}
+        />
+      )}
+
+      {/* Checkout Modal */}
+      {showCheckout && selectedPlan && (
+        <CheckoutModal
+          plan={selectedPlan}
+          onSuccess={handlePaymentSuccess}
+          onClose={() => {
+            setShowCheckout(false);
+            setSelectedPlan(null);
+          }}
         />
       )}
 
